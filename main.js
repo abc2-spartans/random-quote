@@ -3,17 +3,19 @@ $(document).ready(function () {
     $.ajax({
       url: "https://dummyjson.com/quotes", // Third-party random quote API
       method: "GET",
-      success: function (data) {
+    })
+      .done((data) => {
         const randomQuote =
           data.quotes[Math.floor(Math.random() * data.quotes.length)]; // Get a random quote
-        $("#quote").text(`"${randomQuote.quote}"`); // Update the quote
+        console.log({ randomQuote });
+        $("#quote").text(`${randomQuote.quote}`); // Update the quote
         $("#author").text(`- ${randomQuote.author}`); // Update the author
-      },
-      error: function () {
+      })
+      .fail((err) => {
+        console.error(err);
         $("#quote").text("Oops! Couldn't fetch a quote. Try again.");
         $("#author").text("");
-      },
-    });
+      });
   };
 
   // Fetch a new quote when the button is clicked

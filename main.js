@@ -1,5 +1,7 @@
 $(document).ready(function () {
   const fetchQuote = () => {
+    $("#quote").text("Loading...");
+    $("#author").text("- Unknown");
     $.ajax({
       url: "https://dummyjson.com/quotes", // Third-party random quote API
       method: "GET",
